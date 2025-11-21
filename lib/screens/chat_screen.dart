@@ -1,3 +1,4 @@
+import 'package:flash_chat/screens/welcome_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -6,7 +7,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 final _fireStore = FirebaseFirestore.instance;
 
 class ChatScreen extends StatefulWidget {
-  String id = 'chatS';
+  static String id = 'chatS';
 
   @override
   _ChatScreenState createState() => _ChatScreenState();
@@ -56,13 +57,23 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.chat , color: Color(0xFFF4F4F4),),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: Hero(
+            tag: 'logo',
+            child: SizedBox(
+              height: 35,
+              width: 35,
+              child: Image.asset('images/chat.png'),
+            ),
+          ),
+        ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.close ,color: Color(0xFFF4F4F4)),
+            icon: Icon(Icons.close, color: Color(0xFFF4F4F4)),
             onPressed: () {
               _auth.signOut();
-              Navigator.pop(context);
+              Navigator.pushNamed(context, WelcomeScreen.id);
             },
           ),
         ],
@@ -74,17 +85,17 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Color(0xFF1D546C),
+        backgroundColor: Color(0xFF0C2B4E),
         elevation: 3,
         shadowColor: Colors.black,
-        surfaceTintColor: Color(0xFF1D546C),
+        surfaceTintColor: Color(0xFF0C2B4E),
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topRight,
             end: Alignment.bottomRight,
-            colors: [Color(0xFF1D546C), Color(0xFFF4F4F4), Color(0xFF1D546C)],
+            colors: [Color(0xFF0C2B4E), Color(0xFFF4F4F4), Color(0xFF0C2B4E)],
           ),
         ),
         child: SafeArea(
@@ -94,16 +105,16 @@ class _ChatScreenState extends State<ChatScreen> {
             children: <Widget>[
               currentUserEmail == null
                   ? Expanded(
-                child: Center(
-                  child: CircularProgressIndicator(
-                    backgroundColor: Color(0xFF1A3D64),
-                  ),
-                ),
-              )
+                      child: Center(
+                        child: CircularProgressIndicator(
+                          backgroundColor: Color(0xFF1A3D64),
+                        ),
+                      ),
+                    )
                   : MassegaesStream(
-                currentUserEmail: currentUserEmail!,
-                scrollController: _scrollController,
-              ),
+                      currentUserEmail: currentUserEmail!,
+                      scrollController: _scrollController,
+                    ),
               Container(
                 decoration: kMessageContainerDecoration,
                 child: Row(
@@ -139,7 +150,7 @@ class _ChatScreenState extends State<ChatScreen> {
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }
@@ -235,7 +246,7 @@ class MessageBubble extends StatelessWidget {
                     bottomRight: Radius.circular(30),
                     bottomLeft: Radius.circular(30),
                   ),
-            color: isMe! ? Colors.cyan.shade700 : Colors.grey[200],
+            color: isMe! ? Color(0xFF0C2B4E) : Colors.grey[350],
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Text(

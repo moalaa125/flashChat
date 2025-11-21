@@ -68,8 +68,11 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                     tag: 'logo',
                     child: Container(
                       height: animation!.value * 70,
-                      child: Image.asset('images/logo.png'),
+                      child: Image.asset('images/chat.png'),
                     ),
+                  ),
+                  SizedBox(
+                    width: 5,
                   ),
                   AnimatedTextKit(
                     animatedTexts: [
@@ -96,7 +99,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   clr: Color(0xFF1A3D64),
                   txt: 'Login',
                   onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen().id);
+                    Navigator.pushNamed(context, LoginScreen.id);
                   },
                 ),
               ),
@@ -106,7 +109,7 @@ class _WelcomeScreenState extends State<WelcomeScreen>
                   clr: Color(0xFF0C2B4E),
                   txt: 'Register',
                   onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen().id);
+                    Navigator.pushNamed(context, RegistrationScreen.id);
                   },
                 ),
               ),

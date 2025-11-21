@@ -23,16 +23,9 @@ class ButtonScreen extends StatelessWidget {
         child: AnimatedOpacity(
           opacity: 1,
           duration: const Duration(seconds: 3),
-          child: CNButton(
-            label: txt,
-            height: 45,
-            style: CNButtonStyle.glass,
-            onPressed: onPressed,
-          ),
+          child: MaterialButton(onPressed: onPressed, child: Text(txt)),
         ),
       ),
     );
   }
 }
-
-

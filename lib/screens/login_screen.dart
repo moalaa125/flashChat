@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class LoginScreen extends StatefulWidget {
-  String id = 'loginS';
+  static String id = 'loginS';
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -40,11 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
                   tag: 'logo',
                   child: Container(
                     height: 200.0,
-                    child: Image.asset('images/logo.png'),
+                    child: Image.asset('images/chat.png'),
                   ),
                 ),
                 SizedBox(height: 48.0),
                 TextField(
+                  cursorColor: Color(0xFF0C2B4E),
                   textAlign: TextAlign.center,
                   keyboardType: TextInputType.emailAddress,
                   onChanged: (value) {
@@ -53,25 +54,11 @@ class _LoginScreenState extends State<LoginScreen> {
 
                   decoration: kInputStyle.copyWith(
                     hintText: 'Enter Your Email',
-                    hintStyle: TextStyle(color: Color(0xFF0C2B4E)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xFF1D546C),
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xFF0C2B4E),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
                   ),
                 ),
                 SizedBox(height: 8.0),
                 TextField(
+                  cursorColor: Color(0xFF0C2B4E),
                   textAlign: TextAlign.center,
                   obscureText: true,
                   onChanged: (value) {
@@ -80,21 +67,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   decoration: kInputStyle.copyWith(
                     hintText: 'Enter Your Password',
                     prefixIcon: Icon(Icons.key, color: Color(0xFF0C2B4E)),
-                    hintStyle: TextStyle(color: Color(0xFF0C2B4E)),
-                    enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xFF1D546C),
-                        width: 1.0,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: Color(0xFF0C2B4E),
-                        width: 2.0,
-                      ),
-                      borderRadius: BorderRadius.all(Radius.circular(32.0)),
-                    ),
                   ),
                 ),
                 SizedBox(height: 24.0),
@@ -130,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           setState(() {
                             spinner = false;
                           });
-                          Navigator.pushNamed(context, ChatScreen().id);
+                          Navigator.pushNamed(context, ChatScreen.id);
                         }
                       } on FirebaseAuthException catch (e) {
                         setState(() {
