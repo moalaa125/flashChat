@@ -41,7 +41,6 @@ dependencies:
   modal_progress_hud_nsn: ^0.5.1
   liquid_glass_renderer: ^0.2.0-dev.4
   glassmorphism: ^3.0.0
-  cupertino_native: ^0.1.1
   flutter_screenutil: ^5.9.3
 
 
