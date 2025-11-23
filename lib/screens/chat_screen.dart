@@ -115,39 +115,45 @@ class _ChatScreenState extends State<ChatScreen> {
                       currentUserEmail: currentUserEmail!,
                       scrollController: _scrollController,
                     ),
-              Container(
-                decoration: kMessageContainerDecoration,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: <Widget>[
-                    Expanded(
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Expanded(
+                    child: Theme(
+                      data: Theme.of(context).copyWith(
+                          textSelectionTheme: TextSelectionThemeData(
+                            selectionHandleColor: Color(0xFF0C2B4E),
+                            selectionColor: Color(0xFF0C2B4E),
+                          )
+                      ),
                       child: TextField(
                         controller: textEdiingColtroller,
                         onChanged: (value) {
                           messageText = value;
                         },
+                        style: TextStyle(color: Colors.white),
+                        cursorColor: Colors.white,
                         decoration: kMessageTextFieldDecoration,
                       ),
                     ),
-                    IconButton(
-                      icon: Icon(Icons.send, color: Color(0xFFF4F4F4)),
-                      onPressed: () async {
-                        if (messageText != null &&
-                            messageText!.trim().isNotEmpty) {
-                          await _fireStore.collection('messages').add({
-                            'text': messageText,
-                            'sender': currentUserEmail,
-                            'timestamp': FieldValue.serverTimestamp(),
-                          });
-                          textEdiingColtroller.clear();
-                          scrollToBottom();
-                        }
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.send, color: Color(0xFFF4F4F4)),
+                    onPressed: () async {
+                      if (messageText != null &&
+                          messageText!.trim().isNotEmpty) {
+                        await _fireStore.collection('messages').add({
+                          'text': messageText,
+                          'sender': currentUserEmail,
+                          'timestamp': FieldValue.serverTimestamp(),
+                        });
+                        textEdiingColtroller.clear();
+                        scrollToBottom();
+                      }
+                    },
+                  ),
+                ],
+              )],
           ),
         ),
       ),
@@ -170,7 +176,7 @@ class MassegaesStream extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
       stream: _fireStore
           .collection('messages')
-          .orderBy('timestamp', descending: true) // ✅ الأحدث أولاً
+          .orderBy('timestamp', descending: true)
           .snapshots(),
       builder: (context, snapshot) {
         if (!snapshot.hasData) {
@@ -203,7 +209,7 @@ class MassegaesStream extends StatelessWidget {
         return Expanded(
           child: ListView(
             controller: scrollController,
-            reverse: true, // ✅ يجعل الأحدث في الأسفل
+            reverse: true,
             padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             children: messageBubbles,
           ),

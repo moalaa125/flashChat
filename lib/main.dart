@@ -4,11 +4,16 @@ import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
 import 'package:flash_chat/screens/chat_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await Firebase.initializeApp();
+  await Supabase.initialize(
+    url: 'https://gebtcobfoqouicjwqliq.supabase.co',
+    anonKey: 'sb_publishable_q98y3fBrQgE24HaXV40PQQ_zn1DCaVA',
+  );
 
   runApp(FlashChat());
 }
