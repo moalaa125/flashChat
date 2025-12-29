@@ -22,11 +22,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: Container(
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.centerRight,
-            end: Alignment.bottomLeft,
-            colors: [Color(0xFF1D546C), Color(0xFFF4F4F4), Color(0xFF1D546C)],
-          ),
+          color: Colors.white
         ),
         child: ModalProgressHUD(
           inAsyncCall: spinner,

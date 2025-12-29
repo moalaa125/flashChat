@@ -2,8 +2,8 @@ import 'package:flash_chat/screens/button_screen.dart';
 import 'package:flash_chat/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flash_chat/screens/registration_screen.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
+// import 'package:animated_text_kit/animated_text_kit.dart';
+// import 'package:liquid_glass_renderer/liquid_glass_renderer.dart';
 
 class WelcomeScreen extends StatefulWidget {
   static String id = 'welcomeS';
@@ -45,78 +45,84 @@ class _WelcomeScreenState extends State<WelcomeScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft ,
-            end: Alignment.bottomLeft ,
-            colors: [
-              Color(0xFF1D546C),
-              Color(0xFFF4F4F4),
-              Color(0xFF1D546C),
-            ]
-          )
-        ),
+        decoration: BoxDecoration(color: Colors.white),
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24.0),
+          padding: const EdgeInsets.only(top: 120, bottom: 20),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Row(
-                children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
                   Hero(
                     tag: 'logo',
-                    child: Container(
-                      height: animation!.value * 70,
-                      child: Image.asset('images/chat.png'),
+                    child: Image.asset('images/Frame.png', scale: 2.5),
+                  ),
+                  SizedBox(height: 50),
+                ],
+              ),
+              Column(
+                children: [
+                  Text(
+                    'Welcome to Flash chat!',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 30,
+                      fontWeight: FontWeight.w700,
                     ),
                   ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  AnimatedTextKit(
-                    animatedTexts: [
-                      TyperAnimatedText(
-                        'Flash Chat',
-                        textStyle: TextStyle(
-                          fontSize: 45.0,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xFF1A3D64),
-                        ),
-                        speed: Duration(milliseconds: 100),
-                      ),
-                    ],
-                    totalRepeatCount: 1,
-                    displayFullTextOnTap: true,
-                    onTap: () {},
+                  SizedBox(height: 15),
+                  Text(
+                    textAlign: TextAlign.center,
+                    'Get ready for instant messaging , \ndelivered at the speed of light',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.w500,
+                      fontSize: 20,
+                    ),
                   ),
                 ],
               ),
-              SizedBox(height: 48.0),
-              Hero(
-                tag: 'LoginButton',
-                child: ButtonScreen(
-                  clr: Color(0xFF1A3D64),
-                  txt: 'Login',
-                  onPressed: () {
-                    Navigator.pushNamed(context, LoginScreen.id);
-                  },
-                ),
-              ),
-              Hero(
-                tag: 'RegistrationButton',
-                child: ButtonScreen(
-                  clr: Color(0xFF0C2B4E),
-                  txt: 'Register',
-                  onPressed: () {
-                    Navigator.pushNamed(context, RegistrationScreen.id);
-                  },
+              // SizedBox(height: 48.0),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 35),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      height: 100,
+                      child: Hero(
+                        tag: 'LoginButton',
+                        child: ButtonScreen(
+                          clr: Color(0xFFf25d9c),
+                          txt: 'Sign up',
+                          fontsize: 22,
+                          onPressed: () {
+                            Navigator.pushNamed(context, RegistrationScreen.id);
+                          },
+                        ),
+                      ),
+                    ),
+                    Hero(
+                      tag: 'RegistrationButton',
+                      child: ButtonScreen(
+                        clr: Colors.white,
+                        txt: 'Sign in ',
+                        txtColor: Color(0xFFf25d9c),
+                        onPressed: () {
+                          Navigator.pushNamed(context, LoginScreen.id);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }
